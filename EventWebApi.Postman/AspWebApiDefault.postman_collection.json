@@ -1,0 +1,87 @@
+{
+	"variables": [],
+	"info": {
+		"name": "AspWebApiDefault",
+		"_postman_id": "168eba34-427e-8a29-e72f-d454126c6d7f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token Request",
+			"request": {
+				"url": "http://localhost/EventWebApi/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "email@email.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "@Bcd1234",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Token Request"
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"url": "http://localhost/EventWebApi/api/Account/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Email\": \"email@email.com\",\r\n  \"Password\": \"@Bcd1234\",\r\n  \"ConfirmPassword\": \"@Bcd1234\"\r\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserInfo",
+			"request": {
+				"url": "http://localhost/EventWebApi/api/Account/UserInfo",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer k2Kb0TEkypqVHLt8B1qg7D8yT-OWKT6t0gS747emL0-_fuXFGbM28F6X_79yKpVRNMlfiQmmxv4yrVMtGoWLna-AqDaPKtHgCqE2eNtjwBrDczPBMsAI9LTc37ulCj1ysFAg-wo7gQNFD53tKdzEaCyY7FXfTpfU7KoGHl9O9J423ytGgUTl-BlsG6n1Wce6ULSxYUa_b0KjoV77z98GiBOocRH4E0f0YkfSo11yygYdlDZhR9jcnhx04lGjz6yCa7O1BSdK4EZwl0aQW_1lytDlnwnyzhR47JBfDXLwCwhp4ZvI5zebZYw0GgSQjTs_pOCE016H96CKXeaR54oc9I2FzJIiEHlgGm1h-pmHdTjkYpMaCgVd-OfWAUhu7rAT8TzY6hQmC1ey2N_QbSHrdVZQr9XkcvnYwHp_nepSy4entFjM3E54LNi4rQBHM6bpqeg6LC0HfNG2f-C8NxUvbfVC9QPPw046brnzAzDQIXY",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get user information"
+			},
+			"response": []
+		}
+	]
+}
