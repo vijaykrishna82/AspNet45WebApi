@@ -81,7 +81,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BlobsApiConsumerMsTest.cs" />
-    <Compile Include="BlobsApiConsumerTests.cs" />
     <Compile Include="MockPactProviders\ConsumerBlobApiPact.cs" />
     <Compile Include="MockPactProviders\ConsumerEventApiPact.cs" />
     <Compile Include="EventApiPactTest.cs" />
@@ -92,7 +91,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="pacts\consumer-blob_api.json" />
     <None Include="pacts\consumer-event_api.json" />
   </ItemGroup>
   <ItemGroup>

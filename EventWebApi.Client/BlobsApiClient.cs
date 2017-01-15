@@ -53,7 +53,7 @@ namespace EventWebApi.Client
             {
                 var result = response.Result;
                 var statusCode = result.StatusCode;
-                if (statusCode == HttpStatusCode.Created)
+                if (statusCode == HttpStatusCode.Created || statusCode == HttpStatusCode.OK)
                 {
                     return result.Content.ReadAsByteArrayAsync().Result;
                 }
