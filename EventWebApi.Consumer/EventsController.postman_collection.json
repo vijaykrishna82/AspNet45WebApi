@@ -1,0 +1,109 @@
+{
+	"variables": [],
+	"info": {
+		"name": "EventsController",
+		"_postman_id": "1059d833-e2ed-b4f8-c65b-f864e53940f4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token Request",
+			"request": {
+				"url": "http://localhost/EventWebApi/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "email@email.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "@Bcd1234",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Token Request"
+			},
+			"response": []
+		},
+		{
+			"name": "Events",
+			"request": {
+				"url": "http://localhost/EventWebApi/events",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer bmg33EPkhy209x5-yUW5Ig1fuEhf-SwL7_OSSCklFxDdJBBMeHIOuTuRmK7Qrp_cSHwTMsLHsvCeybylJLwNDhwOl-09jChYhB_FWOoErFCHciIosUH-xeckMBLV7Dh4Zh53s_9UEmrU4-fkFDeRJN2qcI1wbRD9EHMuTOL7k3sd9K_jd7iCH7Uo_ZtWTFBpGBsmKs4hRfy0paDOSJM5M6vhNizYam-35_0dmU7tAYUeQ8_Bg0qKN2DJUTAW0JLBjYlnLY33u-O4LxP-O90rdhD1UnjqS4zW_1kHhBuEPjwrRbbfR2iMx1EbpxRo8YNOgmLTnxMVvOOV5LbhSBwUqsrL-daA9o4Wto9EcCbPJeO8AQBupBEojho7fD8cnQfkLMNH47FCgH9V4eknHBuDeyubbloKSsgrlZ5um7pMyTDqgBiOahsLr2WcsjNKDS1Jy312gjOjMF1_DEZ6vctJ-6bjx0toakkriCCsa8aiIdo",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get all events"
+			},
+			"response": []
+		},
+		{
+			"name": "Get event by Id",
+			"request": {
+				"url": "http://localhost/EventWebApi/events/83f9262f-28f1-4703-ab1a-8cfd9e8249c9",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get event by type",
+			"request": {
+				"url": "http://localhost/EventWebApi/events?type=SearchView",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post event",
+			"request": {
+				"url": "http://localhost/EventWebApi/events",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"something\": \"something\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
