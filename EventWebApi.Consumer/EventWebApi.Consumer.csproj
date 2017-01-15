@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EventsController.postman_collection.json" />
+    <None Include="StatsController.postman_collection.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

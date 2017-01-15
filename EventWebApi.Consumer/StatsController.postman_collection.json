@@ -1,0 +1,33 @@
+{
+	"variables": [],
+	"info": {
+		"name": "StatsController",
+		"_postman_id": "42dd4f93-cab0-b557-ba4a-de922f797ef2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Stats Status",
+			"request": {
+				"url": "http://localhost/EventWebApi/stats/status",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Stats Uptime",
+			"request": {
+				"url": "http://localhost/EventWebApi/stats/uptime",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
