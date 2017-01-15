@@ -8,3 +8,8 @@ Starter project of Asp.net WebApi
 + Add an initial migration: `add-migration initial`
 + Update Database: `update-database`
 
+## Postman
++ Open Postman (windows)
++ Import collection
++ select one of the collections
++ click on the hamburger menu and access the collection 
