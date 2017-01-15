@@ -1,6 +1,10 @@
 # AspNetWebApiStarter
 Starter project of Asp.net WebApi
 
+## Prerequisites
++ IIS with ASP.net 4.5 HTTP Activation enabled (in windows features)
++ SQL Server 2016 Express
+
 ## Database Setup
 + Go to package manager console 
 	`Tools -> NuGet Package Manager -> Package Manager Console`
