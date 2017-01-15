@@ -45,7 +45,7 @@ namespace EventWebApi.Client
 
         public byte[] GetBlob(Guid id)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, String.Format("/blobs/{0}", id));
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{BaseUri}/blobs/{id}");
 
             var response = HttpClient.SendAsync(request);
 

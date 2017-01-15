@@ -8,17 +8,17 @@ namespace EventWebApi.ComponentTests
     public class StatsClientTests
     {
         [TestMethod]
-        public void Upsince_DeploymentTest()
+        public void Stats_Upsince_DeploymentTest()
         {
-            StatsApiClient client = new StatsApiClient("http://localhost/EventWebApi");
+            var client = new StatsApiClient("http://localhost/EventWebApi");
 
-            DateTime? date = client.UpSince();
+            var date = client.UpSince();
 
             Assert.IsNotNull(date);
         }
 
         [TestMethod]
-        public void IsAlive_DeploymentTest()
+        public void Stats_IsAlive_DeploymentTest()
         {
             var client = new StatsApiClient("http://localhost/EventWebApi");
             bool isAlive = client.IsAlive();
