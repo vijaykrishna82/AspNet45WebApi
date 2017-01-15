@@ -16,17 +16,17 @@ namespace EventWebApi.Client
 
         public bool IsAlive()
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, "/stats/status");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{BaseUri}/stats/status");
             request.Headers.Add("Accept", "application/json");
 
-            var response = _httpClient.SendAsync(request);
+            var response = HttpClient.SendAsync(request);
 
             try
             {
                 var result = response.Result;
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    var responseContent = JsonConvert.DeserializeObject<dynamic>(result.Content.ReadAsStringAsync().Result, _jsonSettings);
+                    var responseContent = JsonConvert.DeserializeObject<dynamic>(result.Content.ReadAsStringAsync().Result, JsonSettings);
                     return responseContent.alive;
                 }
 
@@ -42,10 +42,10 @@ namespace EventWebApi.Client
 
         public DateTime? UpSince()
         {
-            var statusRequest = new HttpRequestMessage(HttpMethod.Get, "/stats/status");
+            var statusRequest = new HttpRequestMessage(HttpMethod.Get, $"{BaseUri}/stats/status");
             statusRequest.Headers.Add("Accept", "application/json");
 
-            var statusResponse = _httpClient.SendAsync(statusRequest);
+            var statusResponse = HttpClient.SendAsync(statusRequest);
 
             try
             {
@@ -54,7 +54,7 @@ namespace EventWebApi.Client
 
                 if (statusResult.StatusCode == HttpStatusCode.OK)
                 {
-                    statusResponseBody = JsonConvert.DeserializeObject<StatusResponseBody>(statusResult.Content.ReadAsStringAsync().Result, _jsonSettings);
+                    statusResponseBody = JsonConvert.DeserializeObject<StatusResponseBody>(statusResult.Content.ReadAsStringAsync().Result, JsonSettings);
                 }
                 else
                 {
@@ -64,19 +64,20 @@ namespace EventWebApi.Client
                 if (statusResponseBody.Alive)
                 {
                     var uptimeLink = statusResponseBody.Links.Single(x => x.Key.Equals("uptime")).Value.Href;
+                    uptimeLink = $"{BaseUri}{uptimeLink}";
 
                     if (!String.IsNullOrEmpty(uptimeLink))
                     {
                         var uptimeRequest = new HttpRequestMessage(HttpMethod.Get, uptimeLink);
                         uptimeRequest.Headers.Add("Accept", "application/json");
 
-                        var uptimeResponse = _httpClient.SendAsync(uptimeRequest);
+                        var uptimeResponse = HttpClient.SendAsync(uptimeRequest);
                         try
                         {
                             var uptimeResult = uptimeResponse.Result;
                             if (uptimeResult.StatusCode == HttpStatusCode.OK)
                             {
-                                var uptimeResponseBody = JsonConvert.DeserializeObject<UptimeResponseBody>(uptimeResult.Content.ReadAsStringAsync().Result, _jsonSettings);
+                                var uptimeResponseBody = JsonConvert.DeserializeObject<UptimeResponseBody>(uptimeResult.Content.ReadAsStringAsync().Result, JsonSettings);
                                 return uptimeResponseBody.UpSince;
                             }
 

@@ -19,10 +19,10 @@ namespace EventWebApi.Client
 
         public IEnumerable<Event> GetAllEvents()
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, "/events");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{BaseUri}/events");
             request.Headers.Add("Accept", "application/json");
 
-            var response = _httpClient.SendAsync(request);
+            var response = HttpClient.SendAsync(request);
 
             try
             {
@@ -31,7 +31,7 @@ namespace EventWebApi.Client
                 {
                     var content = result.Content.ReadAsStringAsync().Result;
                     return !String.IsNullOrEmpty(content)
-                                ? JsonConvert.DeserializeObject<IEnumerable<Event>>(content, _jsonSettings)
+                                ? JsonConvert.DeserializeObject<IEnumerable<Event>>(content, JsonSettings)
                                 : new List<Event>();
                 }
 
@@ -47,17 +47,17 @@ namespace EventWebApi.Client
 
         public Event GetEventById(Guid id)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, String.Format("/events/{0}", id));
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{BaseUri}/events/{id}");
             request.Headers.Add("Accept", "application/json");
 
-            var response = _httpClient.SendAsync(request);
+            var response = HttpClient.SendAsync(request);
 
             try
             {
                 var result = response.Result;
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    return JsonConvert.DeserializeObject<Event>(result.Content.ReadAsStringAsync().Result, _jsonSettings);
+                    return JsonConvert.DeserializeObject<Event>(result.Content.ReadAsStringAsync().Result, JsonSettings);
                 }
 
                 RaiseResponseError(request, result);
@@ -72,17 +72,17 @@ namespace EventWebApi.Client
 
         public IEnumerable<Event> GetEventsByType(string eventType)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, String.Format("/events?type={0}", eventType));
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{BaseUri}/events?type={eventType}");
             request.Headers.Add("Accept", "application/json");
 
-            var response = _httpClient.SendAsync(request);
+            var response = HttpClient.SendAsync(request);
 
             try
             {
                 var result = response.Result;
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    return JsonConvert.DeserializeObject<IEnumerable<Event>>(result.Content.ReadAsStringAsync().Result, _jsonSettings);
+                    return JsonConvert.DeserializeObject<IEnumerable<Event>>(result.Content.ReadAsStringAsync().Result, JsonSettings);
                 }
 
                 RaiseResponseError(request, result);
@@ -104,11 +104,11 @@ namespace EventWebApi.Client
                 EventType = eventType
             };
 
-            var eventJson = JsonConvert.SerializeObject(@event, _jsonSettings);
+            var eventJson = JsonConvert.SerializeObject(@event, JsonSettings);
             var requestContent = new StringContent(eventJson, Encoding.UTF8, "application/json");
-            var request = new HttpRequestMessage(HttpMethod.Post, "/events") { Content = requestContent };
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{BaseUri}/events") { Content = requestContent };
 
-            var response = _httpClient.SendAsync(request);
+            var response = HttpClient.SendAsync(request);
 
             try
             {

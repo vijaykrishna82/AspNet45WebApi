@@ -21,9 +21,10 @@ namespace EventWebApi.Client
             bytes.Headers.ContentDisposition = new ContentDispositionHeaderValue("file") { FileName = fileName };
             bytes.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 
-            var request = new HttpRequestMessage(HttpMethod.Post, String.Format("/blobs/{0}", id)) { Content = bytes };
 
-            var response = _httpClient.SendAsync(request);
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{BaseUri}/blobs/{id}") { Content = bytes };
+
+            var response = HttpClient.SendAsync(request);
 
             try
             {
@@ -46,7 +47,7 @@ namespace EventWebApi.Client
         {
             var request = new HttpRequestMessage(HttpMethod.Get, String.Format("/blobs/{0}", id));
 
-            var response = _httpClient.SendAsync(request);
+            var response = HttpClient.SendAsync(request);
 
             try
             {
