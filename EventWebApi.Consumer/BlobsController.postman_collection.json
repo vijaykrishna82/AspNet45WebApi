@@ -1,0 +1,50 @@
+{
+	"variables": [],
+	"info": {
+		"name": "BlobsController",
+		"_postman_id": "644f44be-c3fc-03ef-e0f0-f93069c15428",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Blobs Id",
+			"request": {
+				"url": "http://localhost/EventWebApi/blobs/83f9262f-28f1-4703-ab1a-8cfd9e8249c9",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blobs Id post valid",
+			"request": {
+				"url": "http://localhost/EventWebApi/blobs/83f9262f-28f1-4703-ab1a-8cfd9e8249c9",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "This is a test"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blobs Id post bad request",
+			"request": {
+				"url": "http://localhost/EventWebApi/blobs/83f9262f-28f1-4703-ab1a-8cfd9e8249c9",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "This is a test 2"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
