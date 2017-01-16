@@ -1,19 +1,16 @@
 {
   "provider": {
-    "name": "Event API"
+    "name": "Stats Api"
   },
   "consumer": {
     "name": "Consumer"
   },
   "interactions": [
     {
-      "description": "a request to check the api status",
+      "description": "a valid request for status",
       "request": {
         "method": "get",
-        "path": "/stats/status",
-        "headers": {
-          "Accept": "application/json"
-        }
+        "path": "/stats/status"
       },
       "response": {
         "status": 200,
@@ -31,13 +28,10 @@
       }
     },
     {
-      "description": "a request to check the api uptime",
+      "description": "a valid request for uptime",
       "request": {
         "method": "get",
-        "path": "/stats/uptime",
-        "headers": {
-          "Accept": "application/json"
-        }
+        "path": "/stats/uptime"
       },
       "response": {
         "status": 200,
@@ -45,7 +39,7 @@
           "Content-Type": "application/json; charset=utf-8"
         },
         "body": {
-          "upSince": "2014-06-27T23:51:12Z"
+          "upSince": "2001-01-01T00:00:00"
         }
       }
     }

@@ -1,20 +1,20 @@
-﻿using EventWebApi.Client;
-using EventWebApi.PactConsumer.Tests.MockPactProviders;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PactNet.Mocks.MockHttpService.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using EventWebApi.Client;
+using EventWebApi.PactConsumer.Tests.MockPactProviders;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PactNet.Mocks.MockHttpService.Models;
 
-namespace EventWebApi.PactConsumer.Tests
+namespace EventWebApi.PactConsumer.Tests.PactTests
 {
     /// <summary>
     ///     Summary description for BlobsApiConsumerMsTest
     /// </summary>
     [TestClass]
-    public class BlobsApiConsumerMsTest
+    public class BlobsApiConsumerPactTests
     {
         private static ConsumerBlobApiPact ConsumerBlobApiPact;
 

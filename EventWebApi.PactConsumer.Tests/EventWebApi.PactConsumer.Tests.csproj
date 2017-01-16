@@ -80,18 +80,22 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="BlobsApiConsumerMsTest.cs" />
+    <Compile Include="PactTests\BlobsApiConsumerPactTests.cs" />
     <Compile Include="MockPactProviders\ConsumerBlobApiPact.cs" />
     <Compile Include="MockPactProviders\ConsumerEventApiPact.cs" />
     <Compile Include="EventApiPactTest.cs" />
     <Compile Include="EventsApiConsumerTests.cs" />
+    <Compile Include="MockPactProviders\ConsumerStatsApiPact.cs" />
     <Compile Include="MockPactProviders\PactBase.cs" />
+    <Compile Include="PactTests\StatsApiConsumerPactTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="pacts\consumer-blob_api.json" />
     <None Include="pacts\consumer-event_api.json" />
+    <None Include="pacts\consumer-stats_api.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventWebApi.Client\EventWebApi.Client.csproj">
