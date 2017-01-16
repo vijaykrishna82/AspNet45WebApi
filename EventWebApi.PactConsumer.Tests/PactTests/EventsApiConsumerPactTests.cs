@@ -37,10 +37,10 @@ namespace EventWebApi.PactConsumer.Tests.PactTests
         private readonly Dictionary<string,string> AcceptHeaders = 
             new Dictionary<string, string> { { "Accept", "application/json"} };
         private readonly Dictionary<string, string> ContentTypeCharset =
-            new Dictionary<string, string> { { "Content-Type", "application/json; charset=UTF-8" } };
+            new Dictionary<string, string> { { "Content-Type", "application/json; charset=utf-8" } };
 
         private readonly Dictionary<string, string> ContentTypeHeaders =
-            new Dictionary<string, string> { { "Content-Type", "application/json" } };
+            new Dictionary<string, string> { { "Content-Type", "application/json; charset=utf-8" } };
 
         [TestMethod]
         public void EventApi_GetEvents_NoAuthorization()
@@ -52,7 +52,7 @@ namespace EventWebApi.PactConsumer.Tests.PactTests
                 {
                     Headers = ContentTypeHeaders,
                     Status = 401,
-                    Body = new {message = "Authorization has been denied for this request"}
+                    Body = new {message = "Authorization has been denied for this request."}
                 });
 
             var client = new EventsApiClient(ConsumerEventApiPact.BaseUri);
