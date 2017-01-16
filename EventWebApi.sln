@@ -9,6 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventWebApi.Tests", "EventW
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{55A474A3-007E-4E2F-91A0-AE9D8836A909}"
 	ProjectSection(SolutionItems) = preProject
+		pacts\consumer-blob_api.json = pacts\consumer-blob_api.json
+		pacts\consumer-event_api.json = pacts\consumer-event_api.json
+		pacts\consumer-stats_api.json = pacts\consumer-stats_api.json
 		README.md = README.md
 	EndProjectSection
 EndProject

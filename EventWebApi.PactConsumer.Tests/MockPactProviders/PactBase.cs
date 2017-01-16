@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PactNet;
+﻿using PactNet;
 using PactNet.Mocks.MockHttpService;
 
 namespace EventWebApi.PactConsumer.Tests.MockPactProviders
 {
     public class PactBase
     {
-
         public IPactBuilder PactBuilder { get; private set; }
         public IMockProviderService Service { get; private set; }
 
@@ -19,7 +13,7 @@ namespace EventWebApi.PactConsumer.Tests.MockPactProviders
 
         public PactBase(string consumer, string provider, int port)
         {
-            PactBuilder = new PactBuilder()
+            PactBuilder = new PactBuilder(new PactConfig { PactDir = "../../../pacts", LogDir = "../../../logs" })
                 .ServiceConsumer(consumer)
                 .HasPactWith(provider);
             Port = port;
