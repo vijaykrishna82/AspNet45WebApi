@@ -21,20 +21,6 @@
       }
     },
     {
-      "description": "a bad request to create a new blob",
-      "request": {
-        "method": "post",
-        "path": "/blobs/38c3976b-5ae8-4f2f-a8ec-46f6aee826e2",
-        "headers": {
-          "Content-Type": "application/octet-stream"
-        },
-        "body": "VGhpcyBpcyBhIHRlc3QgYW5kIHNvbWV0aGluZw=="
-      },
-      "response": {
-        "status": 400
-      }
-    },
-    {
       "description": "a valid request to get blob",
       "request": {
         "method": "get",
@@ -46,6 +32,20 @@
           "Content-Type": "text/plain"
         },
         "body": "This is a test"
+      }
+    },
+    {
+      "description": "a bad request to create a new blob",
+      "request": {
+        "method": "post",
+        "path": "/blobs/38c3976b-5ae8-4f2f-a8ec-46f6aee826e2",
+        "headers": {
+          "Content-Type": "application/octet-stream"
+        },
+        "body": "VGhpcyBpcyBhIHRlc3QgYW5kIHNvbWV0aGluZw=="
+      },
+      "response": {
+        "status": 400
       }
     }
   ],

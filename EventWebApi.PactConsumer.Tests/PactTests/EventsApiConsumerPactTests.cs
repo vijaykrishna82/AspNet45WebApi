@@ -34,9 +34,12 @@ namespace EventWebApi.PactConsumer.Tests.PactTests
         }
 
 
-        private readonly Dictionary<string,string> RequestHeaders = 
+        private readonly Dictionary<string,string> AcceptHeaders = 
             new Dictionary<string, string> { { "Accept", "application/json"} };
-        private readonly Dictionary<string, string> ResponseHeaders =
+        private readonly Dictionary<string, string> ContentTypeCharset =
+            new Dictionary<string, string> { { "Content-Type", "application/json; charset=UTF-8" } };
+
+        private readonly Dictionary<string, string> ContentTypeHeaders =
             new Dictionary<string, string> { { "Content-Type", "application/json" } };
 
         [TestMethod]
@@ -44,10 +47,10 @@ namespace EventWebApi.PactConsumer.Tests.PactTests
         {
             ConsumerEventApiPact.Service.Given("interactions exist")
                 .UponReceiving("a valid request without authorization for GetEvents")
-                .With(new ProviderServiceRequest {Method = HttpVerb.Get, Path = "/events", Headers = RequestHeaders})
+                .With(new ProviderServiceRequest {Method = HttpVerb.Get, Path = "/events", Headers = AcceptHeaders})
                 .WillRespondWith(new ProviderServiceResponse
                 {
-                    Headers = ResponseHeaders,
+                    Headers = ContentTypeHeaders,
                     Status = 401,
                     Body = new {message = "Authorization has been denied for this request"}
                 });
@@ -70,19 +73,19 @@ namespace EventWebApi.PactConsumer.Tests.PactTests
         public void EventApi_GetAllEvents_Valid()
         {
             var authToken = "someValidAuthToken";
-            var headers = new Dictionary<string, string>
+            var requestHeaders = new Dictionary<string, string>
             {
-                { "Content-Type", "application/json" },
+                { "Accept", "application/json" },
                 {"Authorization", $"Bearer {authToken}" }
             };
 
             ConsumerEventApiPact.Service.Given("interactions exist")
                 .UponReceiving("a valid request for GetEvents")
-                .With(new ProviderServiceRequest {Method = HttpVerb.Get, Path = "/events", Headers = headers})
+                .With(new ProviderServiceRequest {Method = HttpVerb.Get, Path = "/events", Headers = requestHeaders})
                 .WillRespondWith(new ProviderServiceResponse
                 {
                     Status = 200,
-                    Headers = ResponseHeaders,
+                    Headers = ContentTypeHeaders,
                     Body = new[]
                     {
                         new
@@ -111,6 +114,42 @@ namespace EventWebApi.PactConsumer.Tests.PactTests
 
             Assert.AreEqual(3, events.Count());
 
+            ConsumerEventApiPact.Service.VerifyInteractions();
+        }
+
+        [TestMethod]
+        public void EventApi_CreateEvent_Valid()
+        {
+            var eventId = Guid.Parse("1F587704-2DCC-4313-A233-7B62B4B469DB");
+            var dateTime = new DateTime(2011, 07, 01, 01, 41, 03);
+
+            DateTimeFactory.Now = () => dateTime;
+
+            ConsumerEventApiPact.Service
+                .UponReceiving("a valid request for CreateEvent")
+                .With(new ProviderServiceRequest
+                {
+                    Method = HttpVerb.Post,
+                    Path = "/events",
+                    Headers = new Dictionary<string, string>
+                    {
+                        { "Content-Type", "application/json; charset=utf-8" }
+                    },
+                    Body = new
+                    {
+                        eventId,
+                        timestamp = dateTime.ToString("O"),
+                        eventType = "DetailsView"
+                    }
+                })
+                .WillRespondWith(new ProviderServiceResponse { Status = 201 });
+
+            var client = new EventsApiClient(ConsumerEventApiPact.BaseUri);
+
+            client.CreateEvent(eventId);
+
+            ConsumerEventApiPact.Service.VerifyInteractions();
+                
         }
     }
 }
